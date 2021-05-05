@@ -1,0 +1,74 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_008E4158 .scope module, "add_circuit_tb" "add_circuit_tb" 2 2;
+ .timescale -9 -12;
+v01055328_0 .var "cin", 0 0;
+v01055380_0 .net "cout", 0 0, L_01055220;  1 drivers
+v01054F60_0 .var "x", 0 0;
+v01055118_0 .var "y", 0 0;
+v01054D50_0 .net "z", 0 0, L_01054EB0;  1 drivers
+S_008E0FE8 .scope module, "uut" "add_circuit" 2 9, 3 1 0, S_008E4158;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "x"
+    .port_info 1 /INPUT 1 "y"
+    .port_info 2 /INPUT 1 "cin"
+    .port_info 3 /OUTPUT 1 "z"
+    .port_info 4 /OUTPUT 1 "cout"
+v008E10B8_0 .net *"_s0", 1 0, L_01054DA8;  1 drivers
+v008EEF28_0 .net *"_s10", 1 0, L_010551C8;  1 drivers
+L_01055480 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v008EEF80_0 .net *"_s13", 0 0, L_01055480;  1 drivers
+L_01055430 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v008E1110_0 .net *"_s3", 0 0, L_01055430;  1 drivers
+v008E1168_0 .net *"_s4", 1 0, L_01055068;  1 drivers
+L_01055458 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v008EA588_0 .net *"_s7", 0 0, L_01055458;  1 drivers
+v008EA5E0_0 .net *"_s8", 1 0, L_01054E00;  1 drivers
+v008EA638_0 .net "cin", 0 0, v01055328_0;  1 drivers
+v01054C48_0 .net "cout", 0 0, L_01055220;  alias, 1 drivers
+v01055010_0 .net "temp", 1 0, L_01054E58;  1 drivers
+v01055278_0 .net "x", 0 0, v01054F60_0;  1 drivers
+v01054CF8_0 .net "y", 0 0, v01055118_0;  1 drivers
+v01054CA0_0 .net "z", 0 0, L_01054EB0;  alias, 1 drivers
+L_01054DA8 .concat [ 1 1 0 0], v01054F60_0, L_01055430;
+L_01055068 .concat [ 1 1 0 0], v01055118_0, L_01055458;
+L_01054E00 .arith/sum 2, L_01054DA8, L_01055068;
+L_010551C8 .concat [ 1 1 0 0], v01055328_0, L_01055480;
+L_01054E58 .arith/sum 2, L_01054E00, L_010551C8;
+L_01054EB0 .part L_01054E58, 0, 1;
+L_01055220 .part L_01054E58, 1, 1;
+    .scope S_008E4158;
+T_0 ;
+    %set/v v01054F60_0, 0, 1;
+    %set/v v01055118_0, 0, 1;
+    %set/v v01055328_0, 0, 1;
+    %delay 20000, 0;
+    %set/v v01054F60_0, 0, 1;
+    %set/v v01055118_0, 1, 1;
+    %delay 20000, 0;
+    %set/v v01054F60_0, 1, 1;
+    %set/v v01055118_0, 0, 1;
+    %delay 20000, 0;
+    %set/v v01054F60_0, 1, 1;
+    %set/v v01055118_0, 1, 1;
+    %set/v v01055328_0, 1, 1;
+    %delay 40000, 0;
+    %end;
+    .thread T_0;
+    .scope S_008E4158;
+T_1 ;
+    %vpi_call 2 18 "$monitor", "x=%d,y=%d,cin=%d,z=%d,cout=%d", v01054F60_0, v01055118_0, v01055328_0, v01054D50_0, v01055380_0 {0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "add_circuit_tb.v";
+    "add_circuit.v";

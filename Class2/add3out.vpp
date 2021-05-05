@@ -1,0 +1,61 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01143EA0 .scope module, "add_circuit_tb_3" "add_circuit_tb_3" 2 2;
+ .timescale -9 -12;
+P_01104530 .param/l "N" 1 2 3, +C4<0100000>;
+v0110D7E0_0 .var "x", 32 0;
+v0110D998_0 .var "y", 32 0;
+v0110D9F0_0 .net "z", 32 0, L_0110DCB0;  1 drivers
+L_0110DCB0 .part L_0110DAF8, 0, 33;
+S_011041A8 .scope module, "uut" "add_circuit3" 2 9, 3 1 0, S_01143EA0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 33 "x"
+    .port_info 1 /INPUT 33 "y"
+    .port_info 2 /OUTPUT 34 "z"
+P_01103448 .param/l "N" 0 3 2, +C4<0100000>;
+P_01103468 .param/l "N1" 1 3 10, +C4<011111>;
+L_0116CC10 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v01143F70_0 .net/2u *"_s0", 0 0, L_0116CC10;  1 drivers
+L_0116CC60 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v01142000_0 .net *"_s15", 0 0, L_0116CC60;  1 drivers
+v01143940_0 .net *"_s2", 33 0, L_0110D838;  1 drivers
+L_0116CC38 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v01143840_0 .net/2u *"_s4", 0 0, L_0116CC38;  1 drivers
+v01104278_0 .net *"_s6", 33 0, L_0110DD08;  1 drivers
+v011042D0_0 .net *"_s8", 33 0, L_0110DBA8;  1 drivers
+v0110DC58_0 .net "temp", 32 0, L_0110DC00;  1 drivers
+v0110DD60_0 .net "x", 32 0, v0110D7E0_0;  1 drivers
+v0110DA48_0 .net "y", 32 0, v0110D998_0;  1 drivers
+v0110DAA0_0 .net "z", 33 0, L_0110DAF8;  1 drivers
+L_0110D838 .concat [ 33 1 0 0], v0110D7E0_0, L_0116CC10;
+L_0110DD08 .concat [ 33 1 0 0], v0110D998_0, L_0116CC38;
+L_0110DBA8 .arith/sum 34, L_0110D838, L_0110DD08;
+L_0110DC00 .part L_0110DBA8, 0, 33;
+L_0110DAF8 .concat [ 33 1 0 0], L_0110DC00, L_0116CC60;
+    .scope S_01143EA0;
+T_0 ;
+    %movi 8, 512, 33;
+    %set/v v0110D7E0_0, 8, 33;
+    %movi 8, 512, 33;
+    %set/v v0110D998_0, 8, 33;
+    %delay 20000, 0;
+    %vpi_call 2 15 "$stop" {0 0};
+    %end;
+    .thread T_0;
+    .scope S_01143EA0;
+T_1 ;
+    %vpi_call 2 18 "$monitor", "x=%d,y=%d,z=%d", v0110D7E0_0, v0110D998_0, v0110D9F0_0 {0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "add_circuit_tb3.v";
+    "add_circuit3.v";

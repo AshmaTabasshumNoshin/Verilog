@@ -1,0 +1,92 @@
+#! c:/iverilog/bin/vvp
+:ivl_version "0.10.0 (devel)" "(s20130827)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00AF3BD0 .scope module, "two_bit_comp" "two_bit_comp" 2 2;
+ .timescale -9 -12;
+v0088FD98_0 .net "answer", 0 0, L_00890598;  1 drivers
+v0088FE48_0 .var "x", 1 0;
+v00890000_0 .var "y", 1 0;
+S_00AF4A28 .scope module, "uut" "twobitcomptwo" 2 6, 3 1 0, S_00AF3BD0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 2 "x"
+    .port_info 1 /INPUT 2 "y"
+    .port_info 2 /OUTPUT 1 "answer"
+L_00890598 .functor AND 1, L_00AFBC38, L_008907D8, C4<1>, C4<1>;
+v0088FC90_0 .net "answer", 0 0, L_00890598;  alias, 1 drivers
+v0088F920_0 .net "p0", 0 0, L_00AFBC38;  1 drivers
+v0088FDF0_0 .net "p1", 0 0, L_008907D8;  1 drivers
+v0088F978_0 .net "x", 1 0, v0088FE48_0;  1 drivers
+v0088FFA8_0 .net "y", 1 0, v00890000_0;  1 drivers
+L_0088F9D0 .part v0088FE48_0, 1, 1;
+L_0088FA80 .part v00890000_0, 1, 1;
+L_0088FAD8 .part v0088FE48_0, 0, 1;
+L_0088FB88 .part v00890000_0, 0, 1;
+S_00AF4AF8 .scope module, "uut1" "comp" 3 8, 4 1 0, S_00AF4A28;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "x"
+    .port_info 1 /INPUT 1 "y"
+    .port_info 2 /OUTPUT 1 "z"
+L_00AF34F8 .functor NOT 1, L_0088F9D0, C4<0>, C4<0>, C4<0>;
+L_00AF3540 .functor NOT 1, L_0088FA80, C4<0>, C4<0>, C4<0>;
+L_00AFBBA8 .functor AND 1, L_00AF34F8, L_00AF3540, C4<1>, C4<1>;
+L_00AFBBF0 .functor AND 1, L_0088F9D0, L_0088FA80, C4<1>, C4<1>;
+L_00AFBC38 .functor OR 1, L_00AFBBA8, L_00AFBBF0, C4<0>, C4<0>;
+v00AF3CA0_0 .net *"_s0", 0 0, L_00AF34F8;  1 drivers
+v00AF33F0_0 .net *"_s2", 0 0, L_00AF3540;  1 drivers
+v00AF3448_0 .net *"_s4", 0 0, L_00AFBBA8;  1 drivers
+v00AF34A0_0 .net *"_s6", 0 0, L_00AFBBF0;  1 drivers
+v0088FC38_0 .net "x", 0 0, L_0088F9D0;  1 drivers
+v0088FB30_0 .net "y", 0 0, L_0088FA80;  1 drivers
+v0088FEF8_0 .net "z", 0 0, L_00AFBC38;  alias, 1 drivers
+S_00AFBAD8 .scope module, "uut2" "comp" 3 9, 4 1 0, S_00AF4A28;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "x"
+    .port_info 1 /INPUT 1 "y"
+    .port_info 2 /OUTPUT 1 "z"
+L_00AFBC80 .functor NOT 1, L_0088FAD8, C4<0>, C4<0>, C4<0>;
+L_00AFBCC8 .functor NOT 1, L_0088FB88, C4<0>, C4<0>, C4<0>;
+L_008900A8 .functor AND 1, L_00AFBC80, L_00AFBCC8, C4<1>, C4<1>;
+L_00890790 .functor AND 1, L_0088FAD8, L_0088FB88, C4<1>, C4<1>;
+L_008907D8 .functor OR 1, L_008900A8, L_00890790, C4<0>, C4<0>;
+v0088FA28_0 .net *"_s0", 0 0, L_00AFBC80;  1 drivers
+v0088FD40_0 .net *"_s2", 0 0, L_00AFBCC8;  1 drivers
+v0088FF50_0 .net *"_s4", 0 0, L_008900A8;  1 drivers
+v0088FEA0_0 .net *"_s6", 0 0, L_00890790;  1 drivers
+v0088FBE0_0 .net "x", 0 0, L_0088FAD8;  1 drivers
+v0088F8C8_0 .net "y", 0 0, L_0088FB88;  1 drivers
+v0088FCE8_0 .net "z", 0 0, L_008907D8;  alias, 1 drivers
+    .scope S_00AF3BD0;
+T_0 ;
+    %set/v v0088FE48_0, 0, 2;
+    %set/v v00890000_0, 0, 2;
+    %delay 20000, 0;
+    %set/v v0088FE48_0, 0, 2;
+    %movi 8, 1, 2;
+    %set/v v00890000_0, 8, 2;
+    %delay 20000, 0;
+    %movi 8, 1, 2;
+    %set/v v0088FE48_0, 8, 2;
+    %set/v v00890000_0, 0, 2;
+    %delay 20000, 0;
+    %set/v v0088FE48_0, 1, 2;
+    %set/v v00890000_0, 1, 2;
+    %delay 40000, 0;
+    %end;
+    .thread T_0;
+    .scope S_00AF3BD0;
+T_1 ;
+    %vpi_call 2 22 "$monitor", "x=%d,y=%d,answer=%d", v0088FE48_0, v00890000_0, v0088FD98_0 {0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "2bitcomparator_tb.v";
+    "2bitcomparator2.v";
+    "comp.v";

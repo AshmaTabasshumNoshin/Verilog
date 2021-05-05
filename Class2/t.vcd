@@ -1,0 +1,45 @@
+$date
+	Fri Apr 30 02:28:15 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module two_bit_comp $end
+$var wire 1 ! answer $end
+$var reg 2 " x [1:0] $end
+$var reg 2 # y [1:0] $end
+$scope module uut $end
+$var wire 2 $ x [1:0] $end
+$var wire 2 % y [1:0] $end
+$var wire 1 ! answer $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 %
+b0 $
+b0 #
+b0 "
+1!
+$end
+#20000
+0!
+b1 #
+b1 %
+#40000
+b0 #
+b0 %
+0!
+b1 "
+b1 $
+#60000
+1!
+b11 #
+b11 %
+b11 "
+b11 $
+#100000
