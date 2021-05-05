@@ -1,0 +1,3 @@
+main: 1bitcomparator.v 1bitcomparator_tb.v 
+	iverilog -o out.vpp 1bitcomparator.v 1bitcomparator_tb.v
+	vvp out.vpp
